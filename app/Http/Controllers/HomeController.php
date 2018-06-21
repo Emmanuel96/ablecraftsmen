@@ -26,19 +26,25 @@ class HomeController extends Controller
     public function bookArtisans(Request $requests)
     {
         $phone_no = $requests->phone; 
+
+        //I need to do some editing to the phone number to make it okay with nexmo
+        //firstly remove the first zero 
+        $phone_no = substr($phone_no, 1); 
+        //then add +234 at the begining of the number
+        $phone_no = '+234'.$phone_no;
+        
         $name = $requests->name; 
         $description = $requests->message; 
         
         // //firstly send SMS notification to us about booking
-        // Notification::route('twillio',"+2347037699184")
-        //     ->notify(new ArtisanBookingReceived($phone_no, $name, $description));
+        Notification::route('nexmo',"+2347037699184")
+            ->notify(new ArtisanBookingReceived($phone_no, $name, $description));
 
-        //secondly we send the sms to user who booked our service
-        // Notification::route('TwilioChannel::class',$phone_no)
-        //     ->notify(new artisanBookedSMS());
+            //secondly we send the sms to user who booked our service
+        Notification::route('nexmo',$phone_no)
+            ->notify(new artisanBookedSMS());
         
         Mail::to("emmanuel.audu1@aun.edu.ng")->send(new newBookingReceived());
-
 
         //lastly save in the DB
         $newBooking = booking::create([
@@ -56,8 +62,8 @@ class HomeController extends Controller
             ->notify(new artisanRegistered());
 
         // // //then send one to the artisan as well, so he knows we are considering him
-        Notification::route('nexmo',$request->phone)
-            ->notify(new notifyRegisteredArtisan());
+        // Notification::route('nexmo',$request->phone)
+        //     ->notify(new notifyRegisteredArtisan());
 
         //after the whole notifications and all i need it to send an email to me... and daddy i guess 
         Mail::to("emmanuel.audu1@aun.edu.ng")->send(new newArtisanReg());

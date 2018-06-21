@@ -17,17 +17,6 @@ class artisanBookedSMS extends Notification
      *
      * @return void
      */
-
-    private $phone = " "; 
-    private $name = " "; 
-    private $description = " "; 
-
-    public function __construct($vPhone, $vName, $vDescription)
-    {
-        $this->phone = $vPhone; 
-        $this->name = $vName; 
-        $this->description = $vDescription; 
-    }
  /**
      * Get the notification's delivery channels.
      *
