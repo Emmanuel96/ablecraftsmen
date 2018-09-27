@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>We have a solution to your housing issues.</title>
+    <title>Repair And Installations Solutions.</title>
     <link rel = "icon" type = "image/x-icon" href = "{{URL::asset('img/logo_for_now_4.ico')}}"
     <!-- Bootstrap core CSS -->
 
@@ -21,7 +21,7 @@
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
-    <link href="{{URL::asset('css/agency.css')}}" rel="stylesheet">
+    <link href="{{URL::asset('css/agency.css')}}" rel="stylesheet">			
     <link href= "{{URL::asset('css/footer.css')}}" rel = "stylesheet">
 
     <style>
